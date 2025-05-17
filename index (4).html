@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rolar Dados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    label, select, input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #resultados {
+      margin-top: 20px;
+      font-size: 20px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rolar Dados</h1>
+
+  <label for="tipoDado">Tipo de dado:</label>
+  <select id="tipoDado">
+    <option value="4">D4</option>
+    <option value="6" selected>D6</option>
+    <option value="8">D8</option>
+    <option value="10">D10</option>
+    <option value="12">D12</option>
+    <option value="20">D20</option>
+  </select>
+
+  <label for="quantidade">Quantidade:</label>
+  <input type="number" id="quantidade" min="1" max="10" value="1">
+
+  <button onclick="rolarDados()">Rolar</button>
+
+  <div id="resultados"></div>
+
+  <script>
+    function rolarDados() {
+      const tipoDado = Number(document.getElementById('tipoDado').value);
+      const quantidade = Number(document.getElementById('quantidade').value);
+      const resultados = [];
+
+      for(let i = 0; i < quantidade; i++) {
+        const resultado = Math.floor(Math.random() * tipoDado) + 1;
+        resultados.push(resultado);
+      }
+
+      document.getElementById('resultados').innerText = 'Resultados: ' + resultados.join(', ');
+    }
+  </script>
+</body>
+</html>
